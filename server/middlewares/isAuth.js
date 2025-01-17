@@ -13,3 +13,15 @@ export const isAuth = async (req, res, next) => {
     res.status(500).json({ message: "You are not authorized" });
   }
 };
+
+export const isAdmin = async (req, res, next) => {
+  try {
+    if (req.user.role === "admin") {
+      next();
+    } else {
+      res.status(403).json({ message: "You are not authorized" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "You are not authorized" });
+  }
+};
