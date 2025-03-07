@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.common-btn {
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #22a0cd;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+
+.common-btn:hover {
+  background: #fff25e;
+  color: rgb(0, 0, 0);
+  box-shadow: 0 4px 10px rgba(12, 198, 255, 0.6);
+}

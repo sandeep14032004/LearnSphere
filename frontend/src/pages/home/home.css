@@ -1,0 +1,35 @@
+.home {
+    background: linear-gradient(135deg, #c3c5c5, #86fffd, #87e5ff);
+    padding: 100px 0;
+    text-align: center;
+
+
+    .home-content {
+        max-width: 800px;
+        margin: 0 auto;
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+
+            @media (max-width: 768px) {
+                font-size: 30px;
+            }
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+
+            @media (max-width: 768px) {
+                font-size: 16px;
+            }
+        }
+
+        button {
+            padding: 12px 24px;
+
+        }
+    }
+}
