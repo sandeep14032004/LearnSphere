@@ -1,6 +1,5 @@
 import React from "react";
 import "./about.css";
-import Footer from "../../components/footer/Fotter";
 
 const About = () => {
   return (
@@ -18,7 +17,6 @@ const About = () => {
           </p>
         </div>
 
-        {/* Our Mission Section */}
         <div className="mission">
           <h2>Our Mission</h2>
           <p>
@@ -29,7 +27,6 @@ const About = () => {
           </p>
         </div>
 
-        {/* Why Choose Us Section */}
         <div className="why-choose-us">
           <h2>Why Choose Us?</h2>
           <ul>
@@ -102,9 +99,6 @@ const About = () => {
           </div>
         </div>
       </div>
-
-      {/* Footer */}
-      <Footer />
     </>
   );
 };

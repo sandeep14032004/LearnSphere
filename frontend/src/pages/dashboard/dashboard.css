@@ -1,0 +1,56 @@
+/* dashboard.css */
+.student-dashboard {
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    /* Light Glass Effect */
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    text-align: center;
+    color: #e0e0e0;
+}
+
+.student-dashboard h2 {
+    font-size: 2rem;
+    color: #00eaff;
+    text-shadow: 0 0 10px #00eaff;
+    margin-bottom: 15px;
+}
+
+.dashboard-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 10px;
+}
+
+.course-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 15px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+.btn {
+    background: linear-gradient(90deg, #00eaff, #6a00ff);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+    background: linear-gradient(90deg, #6a00ff, #00eaff);
+    transform: scale(1.05);
+}

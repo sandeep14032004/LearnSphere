@@ -1,16 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import "./auth.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { UserData } from "../../context/UserContext";
 const Verify = () => {
+  const [otp, setOtp] = useState("");
+  const { btnLoading, verifyOtp } = UserData();
+  const navigate = useNavigate();
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    await verifyOtp(Number(otp), navigate);
+  };
   return (
     <div className="auth-page">
       <div className="auth-form">
         <h2>Verify Account</h2>
-        <form>
+        <form onSubmit={submitHandler}>
           <label htmlFor="otp">OTP</label>
-          <input type="number" id="code" name="code" required />
-          <button className="common-btn" type="submit">
-            Verify
+          <input
+            type="number"
+            value={otp}
+            onChange={(e) => setOtp(e.target.value)}
+            required
+          />
+          <button className="common-btn" type="submit" disabled={btnLoading}>
+            {btnLoading ? "Please Wait..." : "Verify"}
           </button>
         </form>
         <p>

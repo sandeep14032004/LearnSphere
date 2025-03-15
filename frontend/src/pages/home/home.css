@@ -1,35 +1,66 @@
 .home {
-    background: linear-gradient(135deg, #c3c5c5, #86fffd, #87e5ff);
+    background: linear-gradient(135deg, #031436, #134b7f, #300642);
+    background-size: 300% 300%;
+    animation: infiniteGradient 8s linear infinite;
     padding: 100px 0;
     text-align: center;
+}
 
-
-    .home-content {
-        max-width: 800px;
-        margin: 0 auto;
-
-        h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
-
-            @media (max-width: 768px) {
-                font-size: 30px;
-            }
-        }
-
-        p {
-            font-size: 18px;
-            margin-bottom: 20px;
-            color: #333;
-
-            @media (max-width: 768px) {
-                font-size: 16px;
-            }
-        }
-
-        button {
-            padding: 12px 24px;
-
-        }
+@keyframes infiniteGradient {
+    0% {
+        background-position: 0% 50%;
     }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.home-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.home-content h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .home-content h1 {
+        font-size: 30px;
+    }
+}
+
+.home-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #ddd;
+}
+
+@media (max-width: 768px) {
+    .home-content p {
+        font-size: 16px;
+    }
+}
+
+.home-content button {
+    padding: 12px 24px;
+    color: black;
+    background: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.home-content button:hover {
+    background: #2bfffb;
+    transform: scale(1.1);
+    color: black;
 }

@@ -3,11 +3,11 @@ import "./header.css";
 import { Link } from "react-router-dom";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
-const Header = () => {
+const Header = ({ isAuth }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    setIsMenuOpen((prev) => !prev);
   };
 
   const closeMenu = () => {
@@ -20,7 +20,6 @@ const Header = () => {
         Learn<span>Sphere</span>
       </div>
 
-      {/* Desktop Navigation (Always Visible) */}
       <nav className="nav-links desktop-nav">
         <Link to="/" onClick={closeMenu}>
           Home
@@ -31,12 +30,18 @@ const Header = () => {
         <Link to="/about" onClick={closeMenu}>
           About
         </Link>
-        <Link to="/account" onClick={closeMenu}>
-          Account
-        </Link>
+        {isAuth ? (
+          <Link to="/account" onClick={closeMenu}>
+            Account
+          </Link>
+        ) : (
+          <Link to="/login" onClick={closeMenu}>
+            Login
+          </Link>
+        )}
       </nav>
 
-      {/* Mobile Navigation (Conditionally Rendered) */}
+      {/* Mobile Navigation */}
       {isMenuOpen && (
         <>
           <div className="menu-overlay" onClick={closeMenu}></div>
@@ -50,14 +55,20 @@ const Header = () => {
             <Link to="/about" onClick={closeMenu}>
               About
             </Link>
-            <Link to="/account" onClick={closeMenu}>
-              Account
-            </Link>
+            {isAuth ? (
+              <Link to="/account" onClick={closeMenu}>
+                Account
+              </Link>
+            ) : (
+              <Link to="/login" onClick={closeMenu}>
+                Login
+              </Link>
+            )}
           </nav>
         </>
       )}
 
-      {/* Menu Icon (Visible Only in Mobile View) */}
+      {/* Menu Icon */}
       <div className="menu-icon" onClick={toggleMenu}>
         <i className={`fa-solid ${isMenuOpen ? "fa-xmark" : "fa-bars"}`}></i>
       </div>

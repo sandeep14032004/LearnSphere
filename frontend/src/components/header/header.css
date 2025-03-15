@@ -3,11 +3,12 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background: linear-gradient(135deg, #6c5ce7, #0984e3);
+    background: linear-gradient(135deg, #2b1bac, #133855);
     color: white;
     font-family: 'Poppins', sans-serif;
     position: relative;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    height: 60px;
     z-index: 1000;
 }
 
@@ -22,16 +23,15 @@ header {
     color: #ffcc00;
 }
 
-/* Desktop Navigation */
+
 .nav-links.desktop-nav {
     display: flex;
     gap: 2rem;
 }
 
-/* Mobile Navigation */
+
 .nav-links.mobile-nav {
     display: none;
-    /* Hidden by default */
 }
 
 .nav-links a {
@@ -60,6 +60,16 @@ header {
 }
 
 .nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Active Page Effect */
+.nav-links a.active,
+.nav-links a:focus {
+    color: #ffcc00;
+}
+
+.nav-links a.active::after {
     width: 100%;
 }
 

@@ -1,80 +1,96 @@
+/* Global Theme Variables */
+:root {
+    --primary-color: #0077ff;
+    --secondary-color: #00ccff;
+    --background-dark: #0b1120;
+    --text-light: #d1d8e0;
+    --box-bg: rgba(20, 25, 40, 0.9);
+    --button-bg: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    --button-hover-bg: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+    --shadow: 0 5px 20px rgba(0, 170, 255, 0.2);
+    --glow-effect: 0 0 15px rgba(0, 170, 255, 0.6);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--background-dark);
+    color: var(--text-light);
+    overflow-x: hidden;
+}
+
+/* Profile Section */
 .profile {
     max-width: 1200px;
     margin: 4rem auto;
-    background-color: white;
-    padding: 2rem;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    background: var(--box-bg);
+    padding: 2.5rem;
     border-radius: 15px;
-    font-family: 'Poppins', sans-serif;
-    color: #2d3436;
+    box-shadow: var(--shadow);
     text-align: center;
-    position: relative;
-    overflow: hidden;
-    animation: fadeIn 1s ease-in-out, pulse 5s infinite alternate;
+    animation: fadeIn 1s ease-in-out;
+    border: 2px solid transparent;
+    transition: border 0.3s ease-in-out;
 }
 
+/* Glow Effect on Hover */
+.profile:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 30px rgba(0, 170, 255, 0.4);
+}
+
+/* Animated Heading */
 .profile h2 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     margin-bottom: 3rem;
-    background: linear-gradient(45deg, #0984e3, #6c5ce7);
+    background: var(--button-bg);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-shadow: var(--glow-effect);
     animation: float 3s ease-in-out infinite;
-    position: relative;
 }
 
+/* Profile Information */
 .profile-info {
-    background: white;
+    background: rgba(255, 255, 255, 0.05);
     padding: 3rem;
-    border-radius: 25px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
     max-width: 600px;
     margin: 0 auto;
-    position: relative;
-    overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     animation: fadeInUp 1s ease-in-out;
+    border: 1px solid rgba(0, 170, 255, 0.3);
 }
 
+/* Hover Effect */
 .profile-info:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 15px 40px rgba(0, 170, 255, 0.3);
 }
 
-.profile-info::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, #6c5ce7, #0984e3);
-    animation: gradientMove 3s linear infinite;
-}
-
+/* Text Styling */
 .profile-info p {
     font-size: 1.2rem;
     margin: 1.5rem 0;
-    color: #2d3436;
+    color: var(--text-light);
     text-align: left;
     padding-left: 2rem;
     position: relative;
 }
 
-.profile-info p::before {
-    content: '•';
-    color: #6c5ce7;
-    position: absolute;
-    left: 0;
-    font-size: 1.5rem;
-    line-height: 1;
-}
-
-.common-btn {
-    background: linear-gradient(135deg, #6c5ce7 0%, #0984e3 100%);
+/* Buttons */
+.button {
+    background: var(--button-bg);
     color: white;
-    padding: 1rem 2rem;
+    padding: 1rem 2.5rem;
     border: none;
     border-radius: 30px;
     font-weight: 600;
@@ -85,48 +101,19 @@
     display: inline-flex;
     align-items: center;
     gap: 0.8rem;
-    box-shadow: 0 5px 20px rgba(108, 92, 231, 0.2);
+    box-shadow: var(--shadow);
     position: relative;
     overflow: hidden;
 }
 
-.common-btn:hover {
+/* Button Hover Effect */
+.button:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(108, 92, 231, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 170, 255, 0.5);
+    background: var(--button-hover-bg);
 }
 
-.common-btn::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 10%, transparent 50%);
-    transform: scale(0);
-    transition: transform 0.5s ease-out;
-}
-
-.common-btn:hover::after {
-    transform: scale(1);
-}
-
-.common-btn svg {
-    font-size: 1.4rem;
-}
-
-@keyframes pulse {
-
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.02);
-    }
-}
-
+/* Floating Animation */
 @keyframes float {
 
     0%,
@@ -139,20 +126,7 @@
     }
 }
 
-@keyframes gradientMove {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
+/* Fade In Animation */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -165,6 +139,7 @@
     }
 }
 
+/* Fade In Up Animation */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -177,14 +152,28 @@
     }
 }
 
-@media (max-width: 768px) {
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
     .profile {
         padding: 1.5rem;
+    }
+
+    .profile-info {
+        padding: 2rem;
+    }
+
+    .button {
+        padding: 0.8rem 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile {
         margin: 2rem auto;
     }
 
     .profile h2 {
-        font-size: 2rem;
+        font-size: 2.3rem;
     }
 
     .profile-info {
@@ -197,12 +186,8 @@
         padding-left: 1.5rem;
     }
 
-    .common-btn {
+    .button {
         padding: 0.8rem 1.5rem;
         font-size: 1rem;
-    }
-
-    .common-btn svg {
-        font-size: 1.2rem;
     }
 }
