@@ -1,70 +1,74 @@
 .course-study-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 20px;
-    background: linear-gradient(135deg, #0d0d0d, #1a1a2e);
+    background: linear-gradient(135deg, #0a192f, #0b1727);
     color: #ffffff;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    max-width: 600px;
+    margin: 20px auto;
     text-align: center;
+    transition: transform 0.3s ease-in-out, border 0.3s ease-in-out;
+    border: 2px solid transparent;
+    /* Initially transparent */
+}
+
+.course-study-page:hover {
+    transform: scale(1.02);
+    border: 2px solid #7c49fd;
+    box-shadow: 0 0 15px rgba(100, 255, 218, 0.5);
 }
 
 .course-study-page img {
-    width: 75%;
-    max-width: 300px;
+    width: 50%;
     height: auto;
-    border-radius: 12px;
-    box-shadow: 0px 4px 15px rgba(0, 255, 255, 0.5);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    margin-bottom: 10px;
+    max-height: 200px;
+    border-radius: 8px;
+    border: 2px solid #64ffda;
+    transition: all 0.3s ease-in-out;
 }
 
 .course-study-page img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+    filter: brightness(1.2);
+    transform: rotate(2deg);
 }
 
-
-.course-study-page h4 {
-    font-size: 1.1rem;
-    margin: 8px 10px;
-    font-weight: 500;
-    opacity: 0.9;
-    max-width: 80%;
-    line-height: 1.4;
+.course-study-page h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
 }
 
+.course-study-page h4,
 .course-study-page h5 {
-    font-size: 1rem;
-    color: #00eaff;
-    margin: 5px 0;
-    font-weight: 600;
-}
-
-.course-study-page a {
-    text-decoration: none;
+    font-size: 16px;
+    opacity: 0.8;
+    margin-bottom: 5px;
 }
 
 
 
 @media (max-width: 768px) {
+    .course-study-page {
+        padding: 12px;
+        max-width: 90%;
+    }
+
     .course-study-page img {
-        width: 80%;
-        max-width: 250px;
+        width: 60%;
+        max-height: 150px;
     }
 
     .course-study-page h2 {
-        font-size: 1.6rem;
+        font-size: 18px;
     }
 
     .course-study-page h4,
     .course-study-page h5 {
-        font-size: 1rem;
+        font-size: 14px;
     }
 
-    .course-study-page h2:last-of-type {
-        font-size: 1.1rem;
-        padding: 10px 20px;
+    .btn {
+        font-size: 14px;
+        padding: 6px 12px;
     }
 }

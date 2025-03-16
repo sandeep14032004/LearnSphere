@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 .about-container {
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem;
     font-family: 'Poppins', sans-serif;
     color: #d1d8e0;
-    background: #0a0a0a;
+    background: #180b3a;
     overflow-x: hidden;
 }
 
@@ -163,10 +163,17 @@ h1 {
 .testimonal-item {
     background: rgba(10, 10, 10, 0.9);
     padding: 3rem;
-    border-radius: 25px;
     text-align: center;
     position: relative;
     box-shadow: 0 20px 40px rgba(0, 170, 255, 0.1);
+    transition: all 0.5s ease-in-out;
+    border-radius: 10px;
+}
+
+.testimonal-item:hover {
+    border: 2px solid rgb(79, 16, 113);
+    box-shadow: 0 25px 50px rgba(70, 135, 167, 0.2);
+    transform: scale(1.03);
 }
 
 .testimonal-item p:first-child {

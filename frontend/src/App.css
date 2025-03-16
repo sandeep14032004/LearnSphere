@@ -11,8 +11,9 @@ body {
   padding: 12px 18px;
   border: none;
   border-radius: 8px;
+  width: 25%;
   background: linear-gradient(135deg, #0077ff, #00a8ff);
-  color: #ffffff;
+  color: #000000;
   font-size: 18px;
   font-weight: bold;
   text-transform: uppercase;

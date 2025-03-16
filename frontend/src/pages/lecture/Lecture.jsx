@@ -220,12 +220,13 @@ const Lecture = ({ user }) => {
                     {user && user.role === "admin" && (
                       <button
                         className="btn"
-                        style={{ background: "red" }}
+                        style={{ background: "#1d0f30" }}
                         onClick={() => deleteHandler(e._id)}
                       >
                         Delete {e.title}
                       </button>
                     )}
+                    <br />
                   </>
                 ))
               ) : (

@@ -108,13 +108,13 @@ const CourseDescription = ({ user }) => {
           <p>Let's get started with course at ₹{course.price}</p>
           {user && user.subscription.includes(course._id) ? (
             <button
-              className="btn"
+              className="common-btn"
               onClick={() => navigate(`/course/study/${course._id}`)}
             >
               Study
             </button>
           ) : (
-            <button className="btn" onClick={checkoutHandler}>
+            <button className="common-btn" onClick={checkoutHandler}>
               Enroll
             </button>
           )}

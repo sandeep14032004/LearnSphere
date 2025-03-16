@@ -9,7 +9,11 @@ import toast from "react-hot-toast";
 const AdminUsers = ({ user }) => {
   const navigate = useNavigate();
 
-  if (user && user.role !== "admin") return navigate("/");
+  useEffect(() => {
+    if (!user || user.role !== "admin") {
+      navigate("/");
+    }
+  }, [user, navigate]);
 
   const [users, setUsers] = useState([]);
 
@@ -23,7 +27,7 @@ const AdminUsers = ({ user }) => {
 
       setUsers(data.users);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -32,7 +36,7 @@ const AdminUsers = ({ user }) => {
   }, []);
 
   const updateRole = async (id) => {
-    if (confirm("are you sure you want to update this user role")) {
+    if (window.confirm("Are you sure you want to update this user's role?")) {
       try {
         const { data } = await axios.put(
           `${server}/api/user/${id}`,
@@ -47,7 +51,7 @@ const AdminUsers = ({ user }) => {
         toast.success(data.message);
         fetchUsers();
       } catch (error) {
-        toast.error(error.response.data.message);
+        toast.error(error.response?.data?.message || "Error updating role");
       }
     }
   };
@@ -56,37 +60,43 @@ const AdminUsers = ({ user }) => {
     <Layout>
       <div className="users">
         <h1>All Users</h1>
-        <table border={"black"}>
-          <thead>
-            <tr>
-              <td>#</td>
-              <td>name</td>
-              <td>email</td>
-              <td>role</td>
-              <td>update role</td>
-            </tr>
-          </thead>
-
-          {users &&
-            users.map((e, i) => (
-              <tbody>
+        <div className="table-container">
+          <table border="1">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Update Role</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.length > 0 ? (
+                users.map((e, i) => (
+                  <tr key={e._id}>
+                    <td>{i + 1}</td>
+                    <td>{e.name}</td>
+                    <td>{e.email}</td>
+                    <td>{e.role}</td>
+                    <td>
+                      <button
+                        onClick={() => updateRole(e._id)}
+                        className="common"
+                      >
+                        Update Role
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
                 <tr>
-                  <td>{i + 1}</td>
-                  <td>{e.name}</td>
-                  <td>{e.email}</td>
-                  <td>{e.role}</td>
-                  <td>
-                    <button
-                      onClick={() => updateRole(e._id)}
-                      className="common-btn"
-                    >
-                      Update Role
-                    </button>
-                  </td>
+                  <td colSpan="5">No users found</td>
                 </tr>
-              </tbody>
-            ))}
-        </table>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     </Layout>
   );
