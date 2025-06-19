@@ -4,13 +4,9 @@ Learn Sphere is a dynamic e-learning platform designed to make knowledge accessi
 
 Key Features:
 
-📚 Course modules with video, text, and quiz support
+📚 Course modules with video support
 
 👨‍🏫 Instructor dashboards for content management
-
-📈 Real-time progress tracking and analytics
-
-💬 Discussion forums and peer interaction
 
 🔒 Secure authentication and role-based access
 
