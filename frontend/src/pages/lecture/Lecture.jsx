@@ -132,7 +132,7 @@ const Lecture = ({ user }) => {
       ) : (
         <>
           <div className="lecture-page">
-            <div className="left">
+            <div className="left1">
               {lecLoading ? (
                 <Loading />
               ) : (
@@ -157,9 +157,9 @@ const Lecture = ({ user }) => {
                 </>
               )}
             </div>
-            <div className="right">
+            <div className="right1">
               {user && user.role === "admin" && (
-                <button className="btn" onClick={() => setShow(!show)}>
+                <button className="btn1" onClick={() => setShow(!show)}>
                   {show ? "Close" : "Add Lecture"}
                 </button>
               )}
@@ -219,7 +219,7 @@ const Lecture = ({ user }) => {
                     </div>
                     {user && user.role === "admin" && (
                       <button
-                        className="btn"
+                        className="btn1"
                         style={{ background: "#1d0f30" }}
                         onClick={() => deleteHandler(e._id)}
                       >

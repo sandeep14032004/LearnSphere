@@ -1,3 +1,5 @@
+// src/pages/AdminCourses.js
+
 import React, { useState } from "react";
 import Layout from "../Utils/Layout";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +12,6 @@ import { server } from "../../main";
 
 const AdminCourses = ({ user }) => {
   const navigate = useNavigate();
-
   if (user && user.role !== "admin") return navigate("/");
 
   const [title, setTitle] = useState("");
@@ -23,26 +24,23 @@ const AdminCourses = ({ user }) => {
   const [imagePrev, setImagePrev] = useState("");
   const [btnLoading, setBtnLoading] = useState(false);
 
+  const { courses, fetchCourses } = CourseData();
+
   const changeImageHandler = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
-
     reader.readAsDataURL(file);
-
     reader.onloadend = () => {
       setImagePrev(reader.result);
       setImage(file);
     };
   };
 
-  const { courses, fetchCourses } = CourseData();
-
   const submitHandler = async (e) => {
     e.preventDefault();
     setBtnLoading(true);
 
     const myForm = new FormData();
-
     myForm.append("title", title);
     myForm.append("description", description);
     myForm.append("category", category);
@@ -70,7 +68,8 @@ const AdminCourses = ({ user }) => {
       setPrice("");
       setCategory("");
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response?.data?.message || "Something went wrong");
+      setBtnLoading(false);
     }
   };
 
@@ -82,7 +81,7 @@ const AdminCourses = ({ user }) => {
             <div className="course-form">
               <h2>Add Course</h2>
               <form onSubmit={submitHandler}>
-                <label htmlFor="text">Title</label>
+                <label>Title</label>
                 <input
                   type="text"
                   value={title}
@@ -90,7 +89,7 @@ const AdminCourses = ({ user }) => {
                   required
                 />
 
-                <label htmlFor="text">Description</label>
+                <label>Description</label>
                 <input
                   type="text"
                   value={description}
@@ -98,7 +97,7 @@ const AdminCourses = ({ user }) => {
                   required
                 />
 
-                <label htmlFor="text">Price</label>
+                <label>Price</label>
                 <input
                   type="number"
                   value={price}
@@ -106,14 +105,15 @@ const AdminCourses = ({ user }) => {
                   required
                 />
 
-                <label htmlFor="text">createdBy</label>
+                <label>Created By</label>
                 <input
                   type="text"
                   value={createdBy}
                   onChange={(e) => setCreatedBy(e.target.value)}
                   required
                 />
-                <label htmlFor="text">catagory</label>
+
+                <label>Category</label>
                 <input
                   type="text"
                   value={category}
@@ -121,7 +121,7 @@ const AdminCourses = ({ user }) => {
                   required
                 />
 
-                <label htmlFor="text">Duration(weeks)</label>
+                <label>Duration (weeks)</label>
                 <input
                   type="number"
                   value={duration}
@@ -130,7 +130,7 @@ const AdminCourses = ({ user }) => {
                 />
 
                 <input type="file" required onChange={changeImageHandler} />
-                {imagePrev && <img src={imagePrev} alt="" width={300} />}
+                {imagePrev && <img src={imagePrev} alt="preview" width={300} />}
 
                 <button type="submit" disabled={btnLoading} className="btn">
                   {btnLoading ? "Please Wait..." : "Add"}
@@ -139,16 +139,18 @@ const AdminCourses = ({ user }) => {
             </div>
           </div>
         </div>
+        <br />
+        <br />
+        <br />
         <div className="left">
-          <h1>All Courses</h1>
-          <div className="dashboard-content">
-            {courses && courses.length > 0 ? (
-              courses.map((e) => {
-                return <CourseCard key={e._id} course={e} />;
-              })
-            ) : (
-              <p>No Courses Yet</p>
-            )}
+          <div className="course-scroll-container">
+            <div className="dashboard-content">
+              {courses && courses.length > 0 ? (
+                courses.map((e) => <CourseCard key={e._id} course={e} />)
+              ) : (
+                <p>No Courses Yet</p>
+              )}
+            </div>
           </div>
         </div>
       </div>
