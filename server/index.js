@@ -11,9 +11,8 @@ dotenv.config();
 const uploadDir = path.join(path.resolve(), "uploads");
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
-  console.log("✅ 'uploads' directory created.");
 } else {
-  console.log("✅ 'uploads' directory already exists.");
+  console.log(".");
 }
 
 export const instance = new Razorpay({
