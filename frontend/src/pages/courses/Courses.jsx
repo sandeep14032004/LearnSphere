@@ -7,21 +7,13 @@ import { UserData } from "../../context/UserContext";
 
 const Courses = () => {
   const { courses } = CourseData();
-<<<<<<< HEAD
   const { user } = UserData();
-=======
-  const { user } = UserData(); // Getting user details
->>>>>>> f1f1aeb (WIP: updates before pull rebase)
   const navigate = useNavigate();
 
   return (
     <div className="courses">
       <h2>Available Courses</h2>
 
-<<<<<<< HEAD
-=======
-      {/* Admin-only "Create Course" button */}
->>>>>>> f1f1aeb (WIP: updates before pull rebase)
       {user?.role === "admin" && (
         <button
           className="common-btn"
@@ -31,8 +23,6 @@ const Courses = () => {
         </button>
       )}
 
-<<<<<<< HEAD
-=======
       <div className="info-messages">
         <p className="test-mode-warning">
           💡 <strong>Note:</strong> We are currently using{" "}
@@ -49,7 +39,6 @@ const Courses = () => {
         </p>
       </div>
 
->>>>>>> f1f1aeb (WIP: updates before pull rebase)
       <div className="course-container">
         {courses && courses.length > 0 ? (
           courses.map((e) => <CourseCard key={e._id} course={e} />)
