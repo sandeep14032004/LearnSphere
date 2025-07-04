@@ -6,11 +6,12 @@ pipeline {
     }
 
     stages {
-        stage('Clone Repository') {
-            steps {
-                git 'https://github.com/sandeep14032004/LearnSphere.git'
-            }
-        }
+     stage('Clone Repository') {
+    steps {
+        git branch: 'main', url: 'https://github.com/sandeep14032004/LearnSphere.git'
+    }
+}
+
 
         stage('Docker Compose Build') {
             steps {
