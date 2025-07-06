@@ -3,6 +3,8 @@ pipeline {
 
     environment {
         COMPOSE_PROJECT_NAME = "learnsphere"
+        DOCKER_IMAGE_BACKEND = "sandeep1818/learnsphere-backend"
+        DOCKER_IMAGE_FRONTEND = "sandeep1818/learnsphere-frontend"
     }
 
     stages {
@@ -24,21 +26,33 @@ pipeline {
             }
         }
 
-        stage('Push Images') {
+        stage('Push Images to Docker Hub') {
             steps {
-                // Tag actual built images
-                sh 'docker tag learnsphere-backend sandeep1818/learnsphere-backend'
-                sh 'docker push sandeep1818/learnsphere-backend'
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    // Login to Docker Hub
+                    sh 'echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin'
 
-                sh 'docker tag learnsphere-frontend sandeep1818/learnsphere-frontend'
-                sh 'docker push sandeep1818/learnsphere-frontend'
+                    // Tag and push backend image
+                    sh 'docker tag learnsphere-backend $DOCKER_IMAGE_BACKEND'
+                    sh 'docker push $DOCKER_IMAGE_BACKEND'
+
+                    // Tag and push frontend image
+                    sh 'docker tag learnsphere-frontend $DOCKER_IMAGE_FRONTEND'
+                    sh 'docker push $DOCKER_IMAGE_FRONTEND'
+
+                    // Logout
+                    sh 'docker logout'
+                }
             }
         }
     }
 
     post {
         always {
-            echo "Pipeline finished."
+            echo "✅ Pipeline finished."
+        }
+        failure {
+            echo "❌ Pipeline failed."
         }
     }
 }
