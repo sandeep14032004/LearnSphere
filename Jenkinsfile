@@ -6,12 +6,11 @@ pipeline {
     }
 
     stages {
-     stage('Clone Repository') {
-    steps {
-        git branch: 'main', url: 'https://github.com/sandeep14032004/LearnSphere.git'
-    }
-}
-
+        stage('Clone Repository') {
+            steps {
+                git branch: 'main', url: 'https://github.com/sandeep14032004/LearnSphere.git'
+            }
+        }
 
         stage('Docker Compose Build') {
             steps {
@@ -27,8 +26,12 @@ pipeline {
 
         stage('Push Images') {
             steps {
-                sh 'docker tag backend sandeep1818/learnsphere-backend'
+                // Tag actual built images
+                sh 'docker tag learnsphere-backend sandeep1818/learnsphere-backend'
                 sh 'docker push sandeep1818/learnsphere-backend'
+
+                sh 'docker tag learnsphere-frontend sandeep1818/learnsphere-frontend'
+                sh 'docker push sandeep1818/learnsphere-frontend'
             }
         }
     }
